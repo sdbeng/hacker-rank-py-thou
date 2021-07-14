@@ -8,4 +8,66 @@ We could attack either of those first, but I'm already seeing a potential proble
 
 What happens when you swap two words that aren't the same length?
 
+# the eagle has landed
+[ 't', 'h', 'e', ' ', 'e', 'a', 'g', 'l', 'e', ' ',
+  'h', 'a', 's', ' ', 'l', 'a', 'n', 'd', 'e', 'd' ]
+  
+Supposing we already knew the start and end indices of 'the' and 'landed', how long would it take to swap them?
+
+O(n)O(n) time, where nn is the total length of the message!
+
+Why? Notice that in addition to moving 'the' to the back and moving 'landed' to the front, we have to "scoot over" everything in between, since 'landed' is longer than 'the'.
+
+So what'll be the total time cost with this approach? Assume we'll be able to learn the start and end indices of all of our words in just one pass (O(n)O(n) time).
+
+O(n 
+2
+ ) total time. Why? In the worst case we have almost as many words as we have characters, and we're always swapping words of different lengths. For example:
+
+  # a bb c dd e ff g hh
+[ 'a', ' ', 'b', 'b', ' ', 'c', ' ', 'd', 'd', ' ',
+  'e', ' ', 'f', 'f', ' ', 'g', ' ', 'h', 'h' ]
+
+Python 3.6
+We take O(n)O(n) time to swap the first and last words (we have to move all nn characters):
+
+  # Input: a bb c dd e ff g hh
+[ 'a', ' ', 'b', 'b', ' ', 'c', ' ', 'd', 'd', ' ',
+  'e', ' ', 'f', 'f', ' ', 'g', ' ', 'h', 'h' ]
+
+# First swap: hh bb c dd e ff g a
+[ 'h', 'h', ' ', 'b', 'b', ' ', 'c', ' ', 'd', 'd',
+  ' ', 'e', ' ', 'f', 'f', ' ', 'g', ' ', 'a' ]
+
+Python 3.6
+Then for the second swap:
+
+  # Input: a bb c dd e ff g hh
+[ 'a', ' ', 'b', 'b', ' ', 'c', ' ', 'd', 'd', ' ',
+  'e', ' ', 'f', 'f', ' ', 'g', ' ', 'h', 'h' ]
+
+# First swap: hh bb c dd e ff g a
+[ 'h', 'h', ' ', 'b', 'b', ' ', 'c', ' ', 'd', 'd',
+  ' ', 'e', ' ', 'f', 'f', ' ', 'g', ' ', 'a' ]
+
+# Second swap: hh g c dd e ff bb a
+[ 'h', 'h', ' ', 'g', ' ', 'c', ' ', 'd', 'd',
+  ' ', 'e', ' ', 'f', 'f', ' ', 'b', 'b', ' ', 'a' ]
+
+Python 3.6
+We have to move all nn characters except the first and last words, and a couple spaces. So we move n-5n−5 characters in total.
+
+For the third swap, we have another 55 characters we don't have to move. So we move n-10n−10 in total. We'll end up with a series like this:
+
+n + (n-5) + (n-10) + (n-15) + ... + 6 + 1n+(n−5)+(n−10)+(n−15)+...+6+1
+This is a subsection of the common triangular series. ↴ We're just skipping 4 terms between each term!
+
+So we have the sum of "every fifth number" from that triangular series. That means our sum will be about a fifth the sum of the original series! But in big O notation dividing by 5 is a constant, so we can throw it out. The original triangular series is O(n^2)O(n 
+2
+ ), and so is our series with every fifth element!
+
+Okay, so O(n^2)O(n 
+2
+ ) time. That's pretty bad. It's possible that's the best we can do...but maybe we can do better?
+
 */
