@@ -141,4 +141,17 @@ Hmm, the team used your function to finish deciphering the message. There defini
 
 Bonus
 How would you handle punctuation?
+
+What We Learned
+The naive solution of reversing the words one at a time had a worst-case O(n^2)O(n 
+2
+ ) runtime. That's because swapping words with different lengths required "scooting over" all the other characters to make room.
+
+To get around this "scooting over" issue, we reversed all the characters in the message first. This put all the words in the correct spots, but with the characters in each word backward. So to get the final answer, we reversed the characters in each word. This all takes two passes through the message, so O(n)O(n) time total.
+
+This might seem like a blind insight, but we derived it by using a clear strategy:
+
+Solve a simpler version of the problem (in this case, reversing the characters instead of the words), and see if that gets us closer to a solution for the original problem.
+
+Check out my bootcamp meetup and learn how to be a Full Stack Eng to help out our community.
 */
