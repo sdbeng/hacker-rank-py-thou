@@ -1,0 +1,11 @@
+/* Can we use the same concept but apply it to words instead of characters?
+
+Probably. We'll have to figure out a couple things:
+
+How do we figure out where words begin and end?
+Once we know the start and end indices of two words, how do we swap those two words?
+We could attack either of those first, but I'm already seeing a potential problem in terms of runtime. Can you guess what it is?
+
+What happens when you swap two words that aren't the same length?
+
+*/
